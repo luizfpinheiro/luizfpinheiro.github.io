@@ -1,35 +1,1283 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="import" href="index.html">
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script>L_PREFER_CANVAS=false; L_NO_TOUCH=false; L_DISABLE_3D=false;</script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawgit.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+    <style>#map_78eea452ba784bfaa687378645b43642 {
+        position: relative;
+        width: 100.0%;
+        height: 100.0%;
+        left: 0.0%;
+        top: 0.0%;
+        }
+    </style>
+    
+                <style>
+                    #scroll_zoom_toggler_d60b8688ef6347c592bf5f868422b0a9 {
+                        position:absolute;
+                        width:35px;
+                        bottom:10px;
+                        height:35px;
+                        left:10px;
+                        background-color:#fff;
+                        text-align:center;
+                        line-height:35px;
+                        vertical-align: middle;
+                        }
+                </style>
+            
 </head>
-
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="card-title"><em>BSB - Mapa Cafés</em></h2>
-                <h5 class="card-subtitle mb-2 text-muted">Com apoio do <u><a class="text-dark"
-                            href="https://www.instagram.com/brasiliacafeinada/" target="_blank">Coletivo Brasília
-                            Cafeinada</a></u>
-                </h5>
-                <iframe width="100%" height="450" src="map.html"></iframe>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<body>    
+    <h2 style="padding: 3px;">Com apoio do <a href=”https://www.instagram.com/brasiliacafeinada/” target="_blank">COLETIVO BRASILIA CAFEINADA</a></h2>
+    <div class="folium-map" id="map_78eea452ba784bfaa687378645b43642" ></div>
+    
+            <img id="scroll_zoom_toggler_d60b8688ef6347c592bf5f868422b0a9" alt="scroll"
+                 src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/png/512/arrow-move.png"
+                 style="z-index: 999999"
+                 onclick="map_78eea452ba784bfaa687378645b43642.toggleScroll()">
+            </img>
+            
 </body>
+<script>    
+    
+    
+        var bounds = null;
+    
+
+    var map_78eea452ba784bfaa687378645b43642 = L.map(
+        'map_78eea452ba784bfaa687378645b43642', {
+        center: [-15.8, -47.92],
+        zoom: 12.5,
+        maxBounds: bounds,
+        layers: [],
+        worldCopyJump: false,
+        crs: L.CRS.EPSG3857,
+        zoomControl: true,
+        });
+L.control.scale().addTo(map_78eea452ba784bfaa687378645b43642);
+    
+    
+    var tile_layer_d671620a3f584cdb957ee09d75102174 = L.tileLayer(
+        'https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg',
+        {
+        "attribution": null,
+        "detectRetina": false,
+        "maxNativeZoom": 18,
+        "maxZoom": 18,
+        "minZoom": 0,
+        "noWrap": false,
+        "subdomains": "abc"
+}).addTo(map_78eea452ba784bfaa687378645b43642);
+    
+                    map_78eea452ba784bfaa687378645b43642.scrollEnabled = true;
+
+                    map_78eea452ba784bfaa687378645b43642.toggleScroll = function() {
+                        if (this.scrollEnabled) {
+                            this.scrollEnabled = false;
+                            this.scrollWheelZoom.disable();
+                            }
+                        else {
+                            this.scrollEnabled = true;
+                            this.scrollWheelZoom.enable();
+                            }
+                        };
+
+                    map_78eea452ba784bfaa687378645b43642.toggleScroll();
+            
+    
+            var circle_marker_5c557fce480e42a99abf0cc6b138ed91 = L.circleMarker(
+                [-15.843902800000002, -48.029198],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_d09a1ff634bf4f309414aa7b6ac130b7 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_7a88bca7424a42adbcbeb2ef98dd7efd = $('<div id="html_7a88bca7424a42adbcbeb2ef98dd7efd" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/adoravelcafe" style="padding: 7px; font-size: 16px;" target="_blank">@adoravelcafe</a></b></div>')[0];
+                popup_d09a1ff634bf4f309414aa7b6ac130b7.setContent(html_7a88bca7424a42adbcbeb2ef98dd7efd);
+            
+
+            circle_marker_5c557fce480e42a99abf0cc6b138ed91.bindPopup(popup_d09a1ff634bf4f309414aa7b6ac130b7)
+            ;
+
+            
+        
+    
+            var circle_marker_da51f688dac04d4ab5fe2bb158d4853f = L.circleMarker(
+                [-15.827346100000002, -47.9209156],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_26d62abd1511469e82c90ce266d5cdf3 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_33ffb204a8de4bf3bf4e6a6d21e664b1 = $('<div id="html_33ffb204a8de4bf3bf4e6a6d21e664b1" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/belinicafe" style="padding: 7px; font-size: 16px;" target="_blank">@belinicafe</a></b></div>')[0];
+                popup_26d62abd1511469e82c90ce266d5cdf3.setContent(html_33ffb204a8de4bf3bf4e6a6d21e664b1);
+            
+
+            circle_marker_da51f688dac04d4ab5fe2bb158d4853f.bindPopup(popup_26d62abd1511469e82c90ce266d5cdf3)
+            ;
+
+            
+        
+    
+            var circle_marker_e099f6625ca4424eb24339894dce5c86 = L.circleMarker(
+                [-15.7470158, -47.8858497],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_3f7994f6d6fc4c689a07b2ad7ae8b297 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_8ca928d926404b45a831bfe6fb587671 = $('<div id="html_8ca928d926404b45a831bfe6fb587671" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/cafeclandestino" style="padding: 7px; font-size: 16px;" target="_blank">@cafeclandestino</a></b></div>')[0];
+                popup_3f7994f6d6fc4c689a07b2ad7ae8b297.setContent(html_8ca928d926404b45a831bfe6fb587671);
+            
+
+            circle_marker_e099f6625ca4424eb24339894dce5c86.bindPopup(popup_3f7994f6d6fc4c689a07b2ad7ae8b297)
+            ;
+
+            
+        
+    
+            var circle_marker_525850bfa80543cc97a6d384c611b54a = L.circleMarker(
+                [-15.759269699999999, -47.8901148],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_7343330bba964d7e8866e009194335b0 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_334ec5c1574842da87b492a5eb2dff09 = $('<div id="html_334ec5c1574842da87b492a5eb2dff09" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/cafeeumchero" style="padding: 7px; font-size: 16px;" target="_blank">@cafeeumchero</a></b></div>')[0];
+                popup_7343330bba964d7e8866e009194335b0.setContent(html_334ec5c1574842da87b492a5eb2dff09);
+            
+
+            circle_marker_525850bfa80543cc97a6d384c611b54a.bindPopup(popup_7343330bba964d7e8866e009194335b0)
+            ;
+
+            
+        
+    
+            var circle_marker_d7bc09a5c44645cba20e395924a707f2 = L.circleMarker(
+                [-15.8721388, -47.8371128],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_2b55402076104ac6a2f46b7d6118e4de = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_ad0a419939b14c008c80543da2efcc99 = $('<div id="html_ad0a419939b14c008c80543da2efcc99" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/caliandra" style="padding: 7px; font-size: 16px;" target="_blank">@caliandra</a></b></div>')[0];
+                popup_2b55402076104ac6a2f46b7d6118e4de.setContent(html_ad0a419939b14c008c80543da2efcc99);
+            
+
+            circle_marker_d7bc09a5c44645cba20e395924a707f2.bindPopup(popup_2b55402076104ac6a2f46b7d6118e4de)
+            ;
+
+            
+        
+    
+            var circle_marker_a7044793fb7e48708cd159b32af263f4 = L.circleMarker(
+                [-15.7954848, -47.894865700000004],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_bc19144feee14336ada27f6f5f72f396 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_bde2a42bca8f4c129632ba0ea0add1a2 = $('<div id="html_bde2a42bca8f4c129632ba0ea0add1a2" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/civitacafesespeciais" style="padding: 7px; font-size: 16px;" target="_blank">@civitacafesespeciais</a></b></div>')[0];
+                popup_bc19144feee14336ada27f6f5f72f396.setContent(html_bde2a42bca8f4c129632ba0ea0add1a2);
+            
+
+            circle_marker_a7044793fb7e48708cd159b32af263f4.bindPopup(popup_bc19144feee14336ada27f6f5f72f396)
+            ;
+
+            
+        
+    
+            var circle_marker_56f57d9511bd425eaea24fa8f2cf9ada = L.circleMarker(
+                [-15.7177988, -47.887674700000005],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_1c473acdfc144a928651c178926b6c2c = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_ae5b0202d39d43e18ff42d8ce1e81f56 = $('<div id="html_ae5b0202d39d43e18ff42d8ce1e81f56" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/croqui.cafe" style="padding: 7px; font-size: 16px;" target="_blank">@croqui.cafe</a></b></div>')[0];
+                popup_1c473acdfc144a928651c178926b6c2c.setContent(html_ae5b0202d39d43e18ff42d8ce1e81f56);
+            
+
+            circle_marker_56f57d9511bd425eaea24fa8f2cf9ada.bindPopup(popup_1c473acdfc144a928651c178926b6c2c)
+            ;
+
+            
+        
+    
+            var circle_marker_a10da9ec6f9e40acbb18a9044fa0c0a4 = L.circleMarker(
+                [-15.8352039, -48.0399003],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_ef67e5b6e4344c1caa1b5109bc0763f3 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_65c0a2e5ef51487c9f214d3ac920facc = $('<div id="html_65c0a2e5ef51487c9f214d3ac920facc" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/emilioscafesnoinsta" style="padding: 7px; font-size: 16px;" target="_blank">@emilioscafesnoinsta</a></b></div>')[0];
+                popup_ef67e5b6e4344c1caa1b5109bc0763f3.setContent(html_65c0a2e5ef51487c9f214d3ac920facc);
+            
+
+            circle_marker_a10da9ec6f9e40acbb18a9044fa0c0a4.bindPopup(popup_ef67e5b6e4344c1caa1b5109bc0763f3)
+            ;
+
+            
+        
+    
+            var circle_marker_0ab84ce28629423bbfa5b63cb90bcd5d = L.circleMarker(
+                [-15.8306559, -47.9264053],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_a0d16519d595436882edb2c916ffc2e0 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_de945892af7b46b0a8dfced5528272fa = $('<div id="html_de945892af7b46b0a8dfced5528272fa" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/ernestocafesespeciais" style="padding: 7px; font-size: 16px;" target="_blank">@ernestocafesespeciais</a></b></div>')[0];
+                popup_a0d16519d595436882edb2c916ffc2e0.setContent(html_de945892af7b46b0a8dfced5528272fa);
+            
+
+            circle_marker_0ab84ce28629423bbfa5b63cb90bcd5d.bindPopup(popup_a0d16519d595436882edb2c916ffc2e0)
+            ;
+
+            
+        
+    
+            var circle_marker_35938653becf40c0a7b3ad640f19430d = L.circleMarker(
+                [-15.8268269, -47.9064311],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_1efc950409b547b6af1b437e88b8447a = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_51468edc2101485f89990d8135c87ae0 = $('<div id="html_51468edc2101485f89990d8135c87ae0" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/gentilcafe" style="padding: 7px; font-size: 16px;" target="_blank">@gentilcafe</a></b></div>')[0];
+                popup_1efc950409b547b6af1b437e88b8447a.setContent(html_51468edc2101485f89990d8135c87ae0);
+            
+
+            circle_marker_35938653becf40c0a7b3ad640f19430d.bindPopup(popup_1efc950409b547b6af1b437e88b8447a)
+            ;
+
+            
+        
+    
+            var circle_marker_40bdfdea65334cea92ef5c1d88d82084 = L.circleMarker(
+                [-15.811289000000002, -47.9002271],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_6d43cf80f3e148369d0deba116182713 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_77f20b7ebd664ee7bf215261b47d23f3 = $('<div id="html_77f20b7ebd664ee7bf215261b47d23f3" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/jacketcafe" style="padding: 7px; font-size: 16px;" target="_blank">@jacketcafe</a></b></div>')[0];
+                popup_6d43cf80f3e148369d0deba116182713.setContent(html_77f20b7ebd664ee7bf215261b47d23f3);
+            
+
+            circle_marker_40bdfdea65334cea92ef5c1d88d82084.bindPopup(popup_6d43cf80f3e148369d0deba116182713)
+            ;
+
+            
+        
+    
+            var circle_marker_e12cfa1cde65446dbea551e1214eca6b = L.circleMarker(
+                [-15.8090945, -47.887726799999996],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_4422c8138a134630805bc8fe3243c50d = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_d19e7fb8ec2a4886858e139dcad5a864 = $('<div id="html_d19e7fb8ec2a4886858e139dcad5a864" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/koppecafes" style="padding: 7px; font-size: 16px;" target="_blank">@koppecafes</a></b></div>')[0];
+                popup_4422c8138a134630805bc8fe3243c50d.setContent(html_d19e7fb8ec2a4886858e139dcad5a864);
+            
+
+            circle_marker_e12cfa1cde65446dbea551e1214eca6b.bindPopup(popup_4422c8138a134630805bc8fe3243c50d)
+            ;
+
+            
+        
+    
+            var circle_marker_8cf90d9ebed54c9193969dd1c385e459 = L.circleMarker(
+                [-15.8267484, -47.90884129999999],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_04591435f6304f1b8bbe30265195c935 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_8e51c9de3f564a5f91419a6fe7caa6f9 = $('<div id="html_8e51c9de3f564a5f91419a6fe7caa6f9" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/lalecafedoceria" style="padding: 7px; font-size: 16px;" target="_blank">@lalecafedoceria</a></b></div>')[0];
+                popup_04591435f6304f1b8bbe30265195c935.setContent(html_8e51c9de3f564a5f91419a6fe7caa6f9);
+            
+
+            circle_marker_8cf90d9ebed54c9193969dd1c385e459.bindPopup(popup_04591435f6304f1b8bbe30265195c935)
+            ;
+
+            
+        
+    
+            var circle_marker_48a0ce641e144f57afe19c7bf611cf1c = L.circleMarker(
+                [-15.773610000000001, -47.878704],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_eebabd2588ef4df9a5d73999de70fd30 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_d5c19cee04034b469e7346b06ce374ab = $('<div id="html_d5c19cee04034b469e7346b06ce374ab" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/losbaristas" style="padding: 7px; font-size: 16px;" target="_blank">@losbaristas</a></b></div>')[0];
+                popup_eebabd2588ef4df9a5d73999de70fd30.setContent(html_d5c19cee04034b469e7346b06ce374ab);
+            
+
+            circle_marker_48a0ce641e144f57afe19c7bf611cf1c.bindPopup(popup_eebabd2588ef4df9a5d73999de70fd30)
+            ;
+
+            
+        
+    
+            var circle_marker_016631db4dba49b5aeac44bc3df48332 = L.circleMarker(
+                [-15.833798000000002, -48.045178],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_97fc20e36cb94dfdb564c8b9f860f453 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_69d49c14c99c4c1b89406bf117a89939 = $('<div id="html_69d49c14c99c4c1b89406bf117a89939" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/minimalizecafe" style="padding: 7px; font-size: 16px;" target="_blank">@minimalizecafe</a></b></div>')[0];
+                popup_97fc20e36cb94dfdb564c8b9f860f453.setContent(html_69d49c14c99c4c1b89406bf117a89939);
+            
+
+            circle_marker_016631db4dba49b5aeac44bc3df48332.bindPopup(popup_97fc20e36cb94dfdb564c8b9f860f453)
+            ;
+
+            
+        
+    
+            var circle_marker_c71dbb2db76a4964838ffa86aa7eb801 = L.circleMarker(
+                [-15.8029256, -47.895289399999996],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_688844d75c2f481cb569d3457b41ac0b = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_13f5208465b04fcf8942432b2e608d78 = $('<div id="html_13f5208465b04fcf8942432b2e608d78" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/nossoquadrado" style="padding: 7px; font-size: 16px;" target="_blank">@nossoquadrado</a></b></div>')[0];
+                popup_688844d75c2f481cb569d3457b41ac0b.setContent(html_13f5208465b04fcf8942432b2e608d78);
+            
+
+            circle_marker_c71dbb2db76a4964838ffa86aa7eb801.bindPopup(popup_688844d75c2f481cb569d3457b41ac0b)
+            ;
+
+            
+        
+    
+            var circle_marker_e0652133b59a4d49be659a8891e2c469 = L.circleMarker(
+                [-15.783207999999998, -47.885088700000004],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_c3e35af69d7949228e5e066a2bf0ed88 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_cad222aa455b40cdab9c9b89b2811db3 = $('<div id="html_cad222aa455b40cdab9c9b89b2811db3" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/objetoencontrado" style="padding: 7px; font-size: 16px;" target="_blank">@objetoencontrado</a></b></div>')[0];
+                popup_c3e35af69d7949228e5e066a2bf0ed88.setContent(html_cad222aa455b40cdab9c9b89b2811db3);
+            
+
+            circle_marker_e0652133b59a4d49be659a8891e2c469.bindPopup(popup_c3e35af69d7949228e5e066a2bf0ed88)
+            ;
+
+            
+        
+    
+            var circle_marker_b67bcdfbf54d47e99a335b0d9843d4de = L.circleMarker(
+                [-15.777605599999998, -47.8848292],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_e918e1d8f8fc4e6aba71c48b31ea2f95 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_7f3538ef00e541468077d8d5411b3d58 = $('<div id="html_7f3538ef00e541468077d8d5411b3d58" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/quanto.cafe" style="padding: 7px; font-size: 16px;" target="_blank">@quanto.cafe</a></b></div>')[0];
+                popup_e918e1d8f8fc4e6aba71c48b31ea2f95.setContent(html_7f3538ef00e541468077d8d5411b3d58);
+            
+
+            circle_marker_b67bcdfbf54d47e99a335b0d9843d4de.bindPopup(popup_e918e1d8f8fc4e6aba71c48b31ea2f95)
+            ;
+
+            
+        
+    
+            var circle_marker_efa9775fa14a4140a5d4a66fc5aa4e83 = L.circleMarker(
+                [-15.8031604, -47.885430299999996],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_c6d5e553ff5c476b8275f5ee673e48b2 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_bd56fb8002304c3393af218dfbc69fe5 = $('<div id="html_bd56fb8002304c3393af218dfbc69fe5" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/rapportcafe" style="padding: 7px; font-size: 16px;" target="_blank">@rapportcafe</a></b></div>')[0];
+                popup_c6d5e553ff5c476b8275f5ee673e48b2.setContent(html_bd56fb8002304c3393af218dfbc69fe5);
+            
+
+            circle_marker_efa9775fa14a4140a5d4a66fc5aa4e83.bindPopup(popup_c6d5e553ff5c476b8275f5ee673e48b2)
+            ;
+
+            
+        
+    
+            var circle_marker_9b3c7893781e474abaa0390078c7a8cb = L.circleMarker(
+                [-15.8052483, -47.9485497],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_bde6343003b44a12ade23ecfd540c98b = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_e4693a840056409184ce1815df6aed06 = $('<div id="html_e4693a840056409184ce1815df6aed06" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/seupatricioqueridocafe" style="padding: 7px; font-size: 16px;" target="_blank">@seupatricioqueridocafe</a></b></div>')[0];
+                popup_bde6343003b44a12ade23ecfd540c98b.setContent(html_e4693a840056409184ce1815df6aed06);
+            
+
+            circle_marker_9b3c7893781e474abaa0390078c7a8cb.bindPopup(popup_bde6343003b44a12ade23ecfd540c98b)
+            ;
+
+            
+        
+    
+            var circle_marker_bc1ecf63b6b74e609cd3837842be81a7 = L.circleMarker(
+                [-15.7454687, -47.888138899999994],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_41fe147e361d47bfb42a85d2f73b3d18 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_a0c9f4eca29b4e4b90f28bb3b80c5170 = $('<div id="html_a0c9f4eca29b4e4b90f28bb3b80c5170" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/the.coffee.hut.bsb" style="padding: 7px; font-size: 16px;" target="_blank">@the.coffee.hut.bsb</a></b></div>')[0];
+                popup_41fe147e361d47bfb42a85d2f73b3d18.setContent(html_a0c9f4eca29b4e4b90f28bb3b80c5170);
+            
+
+            circle_marker_bc1ecf63b6b74e609cd3837842be81a7.bindPopup(popup_41fe147e361d47bfb42a85d2f73b3d18)
+            ;
+
+            
+        
+    
+            var circle_marker_49b66ff8c7504061ba6143d314724aa6 = L.circleMarker(
+                [-15.738894400000001, -47.8906671],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_7f1883d813994b7bbd65146f8eb387c1 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_fc3af1730f9148fcb83e602fd71935ab = $('<div id="html_fc3af1730f9148fcb83e602fd71935ab" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/varandapaesartesanais" style="padding: 7px; font-size: 16px;" target="_blank">@varandapaesartesanais</a></b></div>')[0];
+                popup_7f1883d813994b7bbd65146f8eb387c1.setContent(html_fc3af1730f9148fcb83e602fd71935ab);
+            
+
+            circle_marker_49b66ff8c7504061ba6143d314724aa6.bindPopup(popup_7f1883d813994b7bbd65146f8eb387c1)
+            ;
+
+            
+        
+    
+            var circle_marker_0f2f5287a89c43b48e49476a97b1d144 = L.circleMarker(
+                [-15.763476, -47.892666],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_677820f36faa43bfaae19103904c56b4 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_daeb589d4ba64690b3c1405f799dc828 = $('<div id="html_daeb589d4ba64690b3c1405f799dc828" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/antonietacafe" style="padding: 7px; font-size: 16px;" target="_blank">@antonietacafe</a></b></div>')[0];
+                popup_677820f36faa43bfaae19103904c56b4.setContent(html_daeb589d4ba64690b3c1405f799dc828);
+            
+
+            circle_marker_0f2f5287a89c43b48e49476a97b1d144.bindPopup(popup_677820f36faa43bfaae19103904c56b4)
+            ;
+
+            
+        
+    
+            var circle_marker_cc5dacf18d60420d8a802586845564d2 = L.circleMarker(
+                [15.8145487, -47.890049700000006],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_f8b14513830c4ccaafac7e8a4c8ccbfe = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_25cb6c350ad74a7ebf46b36ba1d96405 = $('<div id="html_25cb6c350ad74a7ebf46b36ba1d96405" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/blend.cafesbsb" style="padding: 7px; font-size: 16px;" target="_blank">@blend.cafesbsb</a></b></div>')[0];
+                popup_f8b14513830c4ccaafac7e8a4c8ccbfe.setContent(html_25cb6c350ad74a7ebf46b36ba1d96405);
+            
+
+            circle_marker_cc5dacf18d60420d8a802586845564d2.bindPopup(popup_f8b14513830c4ccaafac7e8a4c8ccbfe)
+            ;
+
+            
+        
+    
+            var circle_marker_5234a718917d4b7da6694e8b9ab3e9b0 = L.circleMarker(
+                [-15.7530264, -47.8814919],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_aebfb1b1f9364034875ad1f9b0bdf665 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_501f9139c19b433d85ea8d246ddd7872 = $('<div id="html_501f9139c19b433d85ea8d246ddd7872" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/casinhacafe" style="padding: 7px; font-size: 16px;" target="_blank">@casinhacafe</a></b></div>')[0];
+                popup_aebfb1b1f9364034875ad1f9b0bdf665.setContent(html_501f9139c19b433d85ea8d246ddd7872);
+            
+
+            circle_marker_5234a718917d4b7da6694e8b9ab3e9b0.bindPopup(popup_aebfb1b1f9364034875ad1f9b0bdf665)
+            ;
+
+            
+        
+    
+            var circle_marker_f9e465a2d7874d428ad07bde7c62190c = L.circleMarker(
+                [-15.783195800000001, -47.8858187],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_c7341470d098495c9db3107779d0adab = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_48155c6c2f86459c9079990f14770d29 = $('<div id="html_48155c6c2f86459c9079990f14770d29" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/castaliartesanal" style="padding: 7px; font-size: 16px;" target="_blank">@castaliartesanal</a></b></div>')[0];
+                popup_c7341470d098495c9db3107779d0adab.setContent(html_48155c6c2f86459c9079990f14770d29);
+            
+
+            circle_marker_f9e465a2d7874d428ad07bde7c62190c.bindPopup(popup_c7341470d098495c9db3107779d0adab)
+            ;
+
+            
+        
+    
+            var circle_marker_01f8f637724545df9efec6ee7ba8ea93 = L.circleMarker(
+                [-15.840304500000002, -47.9781465],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_07e32326af7a4d83a8c69c75befdeaa3 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_81d474da9a054f369fad7abc19b93fd4 = $('<div id="html_81d474da9a054f369fad7abc19b93fd4" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/crioulacafe" style="padding: 7px; font-size: 16px;" target="_blank">@crioulacafe</a></b></div>')[0];
+                popup_07e32326af7a4d83a8c69c75befdeaa3.setContent(html_81d474da9a054f369fad7abc19b93fd4);
+            
+
+            circle_marker_01f8f637724545df9efec6ee7ba8ea93.bindPopup(popup_07e32326af7a4d83a8c69c75befdeaa3)
+            ;
+
+            
+        
+    
+            var circle_marker_fa96fa979df94c7d9cdcbb1e1af471ed = L.circleMarker(
+                [-15.8427645, -48.024201399999995],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_6b9e9d297c044dce8c541706f3da9969 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_40c2aa578f3c4a22b8698694734f2fa1 = $('<div id="html_40c2aa578f3c4a22b8698694734f2fa1" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/emporiobuongustaio" style="padding: 7px; font-size: 16px;" target="_blank">@emporiobuongustaio</a></b></div>')[0];
+                popup_6b9e9d297c044dce8c541706f3da9969.setContent(html_40c2aa578f3c4a22b8698694734f2fa1);
+            
+
+            circle_marker_fa96fa979df94c7d9cdcbb1e1af471ed.bindPopup(popup_6b9e9d297c044dce8c541706f3da9969)
+            ;
+
+            
+        
+    
+            var circle_marker_f97f9865fa6f4d0c88dbe7cfa6445431 = L.circleMarker(
+                [-15.815251199999999, -47.9119684],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_187f36f3e79c4113a4d5fd8de851d55e = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_af7da683d2f04f4cb3c730ea3ccaa2ba = $('<div id="html_af7da683d2f04f4cb3c730ea3ccaa2ba" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/mercadodocafe.bsb" style="padding: 7px; font-size: 16px;" target="_blank">@mercadodocafe.bsb</a></b></div>')[0];
+                popup_187f36f3e79c4113a4d5fd8de851d55e.setContent(html_af7da683d2f04f4cb3c730ea3ccaa2ba);
+            
+
+            circle_marker_f97f9865fa6f4d0c88dbe7cfa6445431.bindPopup(popup_187f36f3e79c4113a4d5fd8de851d55e)
+            ;
+
+            
+        
+    
+            var circle_marker_ebb0181074f24832a8902bff0927732e = L.circleMarker(
+                [-15.747044099999998, -47.885780600000004],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_7987d1cae96140e19489e35349b3e1fb = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_6c47533362694214b42bb84e5acaf9d7 = $('<div id="html_6c47533362694214b42bb84e5acaf9d7" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/quintalf508" style="padding: 7px; font-size: 16px;" target="_blank">@quintalf508</a></b></div>')[0];
+                popup_7987d1cae96140e19489e35349b3e1fb.setContent(html_6c47533362694214b42bb84e5acaf9d7);
+            
+
+            circle_marker_ebb0181074f24832a8902bff0927732e.bindPopup(popup_7987d1cae96140e19489e35349b3e1fb)
+            ;
+
+            
+        
+    
+            var circle_marker_7035e0b2193e4bda97cce9072810abe8 = L.circleMarker(
+                [-15.7398139, -47.8957443],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_875bae68ea3d4548ad6e1ea4078315a0 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_a4503933f70647f8a911b5b91e3df1f1 = $('<div id="html_a4503933f70647f8a911b5b91e3df1f1" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/salve_cafe" style="padding: 7px; font-size: 16px;" target="_blank">@salve_cafe</a></b></div>')[0];
+                popup_875bae68ea3d4548ad6e1ea4078315a0.setContent(html_a4503933f70647f8a911b5b91e3df1f1);
+            
+
+            circle_marker_7035e0b2193e4bda97cce9072810abe8.bindPopup(popup_875bae68ea3d4548ad6e1ea4078315a0)
+            ;
+
+            
+        
+    
+            var circle_marker_dbd10e2dc4d14f5da417b703e5a8c9da = L.circleMarker(
+                [-15.843724599999998, -47.89741970000001],
+                {
+  "bubblingMouseEvents": true,
+  "color": "black",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "black",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "lineCap": "round",
+  "lineJoin": "round",
+  "opacity": 1.0,
+  "radius": 10,
+  "stroke": true,
+  "weight": 3
+}
+                )
+                .addTo(map_78eea452ba784bfaa687378645b43642);
+            
+    
+            var popup_d328e50d678a4110814cd3a246779705 = L.popup({maxWidth: '250'
+            
+            });
+
+            
+                var html_94e3dc17de4d4512a655d443ec3ea96e = $('<div id="html_94e3dc17de4d4512a655d443ec3ea96e" style="width: 100.0%; height: 100.0%;"><img src="https://image.flaticon.com/icons/svg/733/733558.svg" alt="Instagram" style="width: 20px; height: 20px;"><b><a href="https://instagram.com/teru_cafe" style="padding: 7px; font-size: 16px;" target="_blank">@teru_cafe</a></b></div>')[0];
+                popup_d328e50d678a4110814cd3a246779705.setContent(html_94e3dc17de4d4512a655d443ec3ea96e);
+            
+
+            circle_marker_dbd10e2dc4d14f5da417b703e5a8c9da.bindPopup(popup_d328e50d678a4110814cd3a246779705)
+            ;
+
+            
+        
+</script>
